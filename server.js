@@ -42,3 +42,8 @@ app.get("/todo", function(req,res,next) {
     return res.send(result);
   })
 })
+
+//Listen and serve the app on the desired PORT
+var PORT = 3000;
+app.listen(PORT);
+console.log("App running on port " + PORT);
