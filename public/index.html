@@ -4,13 +4,34 @@
     <!-- This is title, grabbed from $scope.title in the controller -->
     <h1>{{title}}</h1>
 
+    <!-- Create the table -->
+    <table border="1">
+      <tr>
+        <td>Task</td>
+        <td>Completed</td>
+      </tr>
+      <!-- Repeat through all the tasks -->
+      <tr ng-repeat="task in tasks">
+        <td>{{task.todo}}</td>
+        <td><input type="checkbox" ng-model="task.completed"/>
+      </tr>
+    </table>
 
-
+    <!-- Get angular via a CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
     <script>
+    //Initialize the app
     var app = angular.module("advancedTodo", []);
+    //Create the controller, pass $scope and $http.
     app.controller("advancedTodoController", ["$scope", "$http", function($scope, $http) {
       $scope.title = "My awesome todo list";
+      //The base tasks array.
+      $scope.tasks = [
+        {
+          "todo": "This is a sample task.",
+          "completed": true
+        }
+      ]
     }]);
     </script>
   </body>
