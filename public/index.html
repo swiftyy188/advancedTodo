@@ -1,0 +1,17 @@
+<html>
+  <!-- We define the app name and controller -->
+  <body ng-app="advancedTodo" ng-controller="advancedTodoController">
+    <!-- This is title, grabbed from $scope.title in the controller -->
+    <h1>{{title}}</h1>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+    <script>
+    var app = angular.module("advancedTodo", []);
+    app.controller("advancedTodoController", ["$scope", "$http", function($scope, $http) {
+      $scope.title = "My awesome todo list";
+    }]);
+    </script>
+  </body>
+</html>
