@@ -10,7 +10,7 @@ require("rethink-config")({
   //The database name
   "database": "advancedTodo",
   //The tables in an array
-  "table": ["todos"]
+  "tables": ["todos"]
 })
 
 //Initialize express object

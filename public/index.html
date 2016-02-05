@@ -38,7 +38,9 @@
       ];
 
       //Initialize the input
-      $scope.input.task = "";
+      $scope.input = {
+        task: ""
+      };
 
       //The function to submit a task
       $scope.submitTask = function() {
