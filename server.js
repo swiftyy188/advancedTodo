@@ -21,6 +21,13 @@ var app = express();
 //You chain it to the express middleware object using the `.use()` function
 app.use(express.static("./public"));
 
+//Configure body parser to accept JSON and HTML forms
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+
 //Create your first POST request, that recieves a new todo item.
 app.post("/todo", function(req,res,next) {
   //A ReQL query that selects the db with .db() and table with .table() then inserts with .insert()
