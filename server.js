@@ -22,6 +22,7 @@ var app = express();
 app.use(express.static("./public"));
 
 //Configure body parser to accept JSON and HTML forms
+var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
