@@ -13,7 +13,7 @@
       <!-- Repeat through all the tasks -->
       <tr ng-repeat="task in tasks">
         <td>{{task.todo}}</td>
-        <td><input type="checkbox" ng-model="task.completed"/>
+        <td><input type="checkbox" ng-model="task.complete" ng-click="updateTask(task)"/>
       </tr>
     </table>
 
@@ -65,11 +65,24 @@
           "url": "/todo",
         }).then(function(res) {
           $scope.tasks = res.data;
+          console.log(res.data);
         })
       }
 
       //Run this function on runtime
       $scope.getTasks();
+
+      //Update a task when you click whether it's completed or not
+      $scope.updateTask = function(task) {
+        $http({
+          "method": "PATCH",
+          "url": "/todo",
+          "data": task
+        }).then(function() {
+          $scope.getTasks();
+        })
+      }
+
     }]);
     </script>
   </body>

@@ -51,6 +51,18 @@ app.get("/todo", function(req,res,next) {
   })
 })
 
+//Create your first PATCH request, this toggles a todo item from complete or incomplete
+app.patch("/todo", function(req,res,next) {
+  //Doing a ReQL query to update the selected ID based on it.
+  r.db("advancedTodo").table("todos").filter({
+    "id": req.body.id
+  }).update({
+    "complete": req.body.complete
+  }).then(function() {
+    return res.send("Todo updated!");
+  })
+})
+
 //Listen and serve the app on the desired PORT
 var PORT = 3000;
 app.listen(PORT);
