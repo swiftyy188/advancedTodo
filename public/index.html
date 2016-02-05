@@ -17,6 +17,10 @@
       </tr>
     </table>
 
+    <!-- Create inputs to recieve data -->
+    <input type="text" ng-model="input.task"/>
+    <button ng-click="submitTask()">Submit Task</button>
+
     <!-- Get angular via a CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
     <script>
@@ -31,7 +35,39 @@
           "todo": "This is a sample task.",
           "completed": true
         }
-      ]
+      ];
+
+      //Initialize the input
+      $scope.input.task = "";
+
+      //The function to submit a task
+      $scope.submitTask = function() {
+        if ($scope.input.task != "") {
+          $http({
+            "method": "POST",
+            "url": "/todo",
+            "data": {
+              "todo": $scope.input.task
+            }
+          }).then(function() {
+            $scope.input.task = "";
+            $scope.getTasks();
+          })
+        }
+      }
+
+      //Get all the tasks
+      $scope.getTasks = function() {
+        $http({
+          "method": "GET",
+          "url": "/todo",
+        }).then(function(res) {
+          $scope.tasks = res.data;
+        })
+      }
+
+      //Run this function on runtime
+      $scope.getTasks();
     }]);
     </script>
   </body>
